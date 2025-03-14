@@ -1,4 +1,6 @@
-class FormData {
+import 'package:flutter/material.dart';
+
+class FormData with ChangeNotifier {
   final String message;
   final String assignmentInstructionUrl;
   final String information;
@@ -23,11 +25,15 @@ class Attribute {
   final String title;
   final String type;
   final List<String> options;
+  final bool required;
+  List<String> selected;
 
   Attribute({
     required this.id,
     required this.title,
     required this.type,
     required this.options,
+    this.required = false,
+    this.selected = const [],
   });
 }

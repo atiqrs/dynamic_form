@@ -4,6 +4,7 @@ import '../../data/datasources/remote_data_source.dart';
 import '../../data/repositories/form_repository_impl.dart';
 import '../../domain/repositories/form_repository.dart';
 import '../../domain/usecases/fetch_form_data.dart';
+import '../../presentation/providers/form_provider.dart';
 
 final getIt = GetIt.instance;
 
@@ -15,4 +16,6 @@ void setup() {
   );
 
   getIt.registerLazySingleton(() => FetchFormDataUseCase(getIt()));
+
+  getIt.registerSingleton<FormProvider>(FormProvider());
 }

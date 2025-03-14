@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import '../../core/constants/api_constants.dart';
+import '../../core/resources/api_constants.dart';
 import '../models/form_data_model.dart';
 
 class RemoteDataSource {
