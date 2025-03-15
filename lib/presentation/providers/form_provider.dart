@@ -35,7 +35,7 @@ class FormProvider with ChangeNotifier {
 
   bool validateForm() {
     for (var entry in _formValues.entries) {
-      if (entry.value.isEmpty) {
+      if (entry.value.join(', ').isEmpty) {
         return false;
       }
     }

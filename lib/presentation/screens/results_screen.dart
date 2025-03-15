@@ -158,26 +158,21 @@ class ResultsScreen extends StatelessWidget {
                     ],
                   ),
                   Expanded(
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                        bottom: MediaQuery.of(context).viewInsets.bottom,
-                      ),
-                      child: EditSelectionsBottomSheet(
-                        model: model,
-                        formValues: formValues,
-                        onUpdate: (updatedValues) {
-                          Navigator.pop(context);
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ResultsScreen(
-                                formValues: updatedValues,
-                                model: model,
-                              ),
+                    child: EditSelectionsBottomSheet(
+                      model: model,
+                      formValues: formValues,
+                      onUpdate: (updatedValues) {
+                        Navigator.pop(context);
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ResultsScreen(
+                              formValues: updatedValues,
+                              model: model,
                             ),
-                          );
-                        },
-                      ),
+                          ),
+                        );
+                      },
                     ),
                   ),
                 ],

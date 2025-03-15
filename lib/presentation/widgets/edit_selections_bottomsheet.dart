@@ -24,7 +24,7 @@ class EditSelectionsBottomSheet extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (_) => FormProvider(),
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
         body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

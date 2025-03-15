@@ -31,7 +31,19 @@ class _FormScreenState extends State<FormScreen> {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Scaffold(body: Center(child: CircularProgressIndicator()));
         } else if (snapshot.hasError) {
-          return Scaffold(body: Center(child: Text('Error: ${snapshot.error}')));
+          return Scaffold(
+            body: TextButton(
+              onPressed: () => widget.fetchFormDataUseCase.execute(),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Icon(Icons.restart_alt_sharp),
+                  Text('Error: ${snapshot.error}'),
+                  Text('\n\nTap this text to Retry'),
+                ],
+              ),
+            ),
+          );
         } else if (snapshot.hasData) {
           final formData = snapshot.data!;
           final trueProvider = Provider.of<FormProvider>(context, listen: true);
