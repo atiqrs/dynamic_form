@@ -1,0 +1,6 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+.dart_tool
+.idea
+build

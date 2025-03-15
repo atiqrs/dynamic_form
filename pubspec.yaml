@@ -2,6 +2,7 @@ name: dynamic_form
 description: "A Dynamic Form project."
 publish_to: 'none'
 
+# Flutter SDK: 3.27.4
 version: 1.0.0+1
 
 environment:
