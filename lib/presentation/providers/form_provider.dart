@@ -5,8 +5,14 @@ class FormProvider with ChangeNotifier {
 
   Map<String, List<String>> get formValues => _formValues;
 
-  void setValue(String id, List<String> value) {
+  void setValueById(String id, List<String> value) {
     _formValues[id] = value;
+    notifyListeners();
+  }
+
+  void setValue(Map<String, List<String>> value) {
+    _formValues.clear();
+    _formValues.addAll(value);
     notifyListeners();
   }
 

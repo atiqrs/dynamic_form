@@ -52,7 +52,7 @@ class _FormScreenState extends State<FormScreen> {
                             options: attribute.options,
                             selectedValue: trueProvider.getValues(attribute.title)?.first,
                             onChanged: (value) {
-                              falseProvider.setValue(attribute.title, [value ?? '']);
+                              falseProvider.setValueById(attribute.title, [value ?? '']);
                             },
                           ),
                         );
@@ -66,7 +66,7 @@ class _FormScreenState extends State<FormScreen> {
                             hints: AppString.dropDownBlankDash(attribute.title),
                             items: attribute.options,
                             onSubmit: (value) {
-                              falseProvider.setValue(attribute.title, [value]);
+                              falseProvider.setValueById(attribute.title, [value]);
                             },
                           ),
                         );
@@ -80,7 +80,7 @@ class _FormScreenState extends State<FormScreen> {
                               text: falseProvider.getValues(attribute.title)?.first ?? attribute.placeholderKey,
                             ),
                             onChanged: (value) {
-                              falseProvider.setValue(attribute.title, [value]);
+                              falseProvider.setValueById(attribute.title, [value]);
                             },
                           ),
                         );
@@ -112,6 +112,7 @@ class _FormScreenState extends State<FormScreen> {
                         MaterialPageRoute(
                           builder: (context) => ResultsScreen(
                             formValues: falseProvider.formValues,
+                            model: snapshot.data!,
                           ),
                         ),
                       );
