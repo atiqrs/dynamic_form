@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../../resources/strings.dart';
+import 'title_text.dart';
+import 'validation_text.dart';
+
 class RadioInput extends StatelessWidget {
   final String title;
   final List<String> options;
@@ -20,7 +24,13 @@ class RadioInput extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Text(title, style: TextStyle(fontSize: 16)),
+        TitleText(title: title),
+        ValidationText(
+          valid: selectedValue != null,
+          showSuffix: true,
+          suffixText: '${AppString.selectText} 1',
+        ),
+        SizedBox(height: 8),
         ...options.map((option) {
           return RadioListTile<String>(
             title: Text(option),
@@ -28,6 +38,8 @@ class RadioInput extends StatelessWidget {
             selected: selectedValue == option,
             groupValue: selectedValue,
             onChanged: onChanged,
+            contentPadding: EdgeInsets.zero,
+            visualDensity: VisualDensity.compact,
           );
         }),
       ],

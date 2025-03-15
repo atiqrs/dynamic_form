@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../../core/commons/widgets/checkbox_input.dart';
 import '../../core/commons/widgets/custom_button.dart';
 import '../../core/commons/widgets/dropdown/custom_dropdown.dart';
+import '../../core/commons/widgets/padding_divider.dart';
 import '../../core/commons/widgets/radio_input.dart';
 import '../../core/commons/widgets/textfield_input.dart';
 import '../../core/resources/strings.dart';
@@ -40,47 +41,58 @@ class _FormScreenState extends State<FormScreen> {
             child: Scaffold(
               appBar: AppBar(title: Text(AppString.titleInputTypes), centerTitle: true),
               body: SingleChildScrollView(
-                padding: EdgeInsets.all(16),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: formData.jsonResponse.attributes.map((attribute) {
                     switch (attribute.type) {
                       case AppString.radio:
-                        return RadioInput(
-                          title: attribute.title,
-                          options: attribute.options,
-                          selectedValue: trueProvider.getValues(attribute.title)?.first,
-                          onChanged: (value) {
-                            falseProvider.setValue(attribute.title, [value ?? '']);
-                          },
+                        return PaddingDivider(
+                          widget: RadioInput(
+                            title: attribute.title,
+                            options: attribute.options,
+                            selectedValue: trueProvider.getValues(attribute.title)?.first,
+                            onChanged: (value) {
+                              falseProvider.setValue(attribute.title, [value ?? '']);
+                            },
+                          ),
                         );
                       case AppString.dropdown:
-                        return CustomDropdown(
-                          headerText: attribute.title,
-                          selectedItem: trueProvider.getValues(attribute.title)?.first,
-                          hints: AppString.dropDownBlankDash(attribute.title),
-                          items: attribute.options,
-                          onSubmit: (value) {
-                            falseProvider.setValue(attribute.title, [value]);
-                          },
+                        return PaddingDivider(
+                          bottomPadding: true,
+                          widget: CustomDropdown(
+                            headerText: attribute.title,
+                            selectedItem: trueProvider.getValues(attribute.title)?.first,
+                            hints: AppString.dropDownBlankDash(attribute.title),
+                            items: attribute.options,
+                            onSubmit: (value) {
+                              falseProvider.setValue(attribute.title, [value]);
+                            },
+                          ),
                         );
                       case AppString.textField:
-                        return TextFieldInput(
-                          title: attribute.title,
-                          placeholder: AppString.inputTextFieldHints,
-                          controller: TextEditingController(text: trueProvider.getValues(attribute.title)?.first ?? ''),
-                          onChanged: (value) {
-                            falseProvider.setValue(attribute.title, [value]);
-                          },
+                        return PaddingDivider(
+                          bottomPadding: true,
+                          widget: TextFieldInput(
+                            title: attribute.title,
+                            placeholder: AppString.inputTextFieldHints,
+                            controller: TextEditingController(
+                              text: falseProvider.getValues(attribute.title)?.first ?? '',
+                            ),
+                            onChanged: (value) {
+                              falseProvider.setValue(attribute.title, [value]);
+                            },
+                          ),
                         );
                       case AppString.checkbox:
-                        return CheckboxInput(
-                          title: attribute.title,
-                          options: attribute.options,
-                          selectedValues: trueProvider.getValues(attribute.title) ?? [],
-                          onChanged: (value) {
-                            falseProvider.toggleValue(attribute.title, value);
-                          },
+                        return PaddingDivider(
+                          widget: CheckboxInput(
+                            title: attribute.title,
+                            options: attribute.options,
+                            selectedValues: trueProvider.getValues(attribute.title) ?? [],
+                            onChanged: (value) {
+                              falseProvider.toggleValue(attribute.title, value);
+                            },
+                          ),
                         );
                       default:
                         return SizedBox();

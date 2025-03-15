@@ -1,4 +1,8 @@
+import 'package:dynamic_form/core/commons/widgets/title_text.dart';
 import 'package:flutter/material.dart';
+
+import '../../../resources/strings.dart';
+import '../validation_text.dart';
 
 class CustomDropdown extends StatelessWidget {
   final List<String> items;
@@ -24,14 +28,9 @@ class CustomDropdown extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         if (headerText != null) ...[
-          Text(headerText!,
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.inverseSurface,
-                fontSize: 14,
-              )),
-          const SizedBox(
-            height: 4,
-          ),
+          TitleText(title: headerText ?? ''),
+          ValidationText(valid: selectedItem != null),
+          SizedBox(height: 8),
         ],
         DropdownButtonFormField(
           hint: Text(hints ?? 'Select'),
