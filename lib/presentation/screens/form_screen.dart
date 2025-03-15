@@ -61,7 +61,8 @@ class _FormScreenState extends State<FormScreen> {
                           bottomPadding: true,
                           widget: CustomDropdown(
                             headerText: attribute.title,
-                            selectedItem: trueProvider.getValues(attribute.title)?.first,
+                            selectedItem: trueProvider.getValues(attribute.title)?.first ??
+                                (attribute.options.contains(attribute.selectedKey) ? attribute.selectedKey : null),
                             hints: AppString.dropDownBlankDash(attribute.title),
                             items: attribute.options,
                             onSubmit: (value) {
@@ -76,7 +77,7 @@ class _FormScreenState extends State<FormScreen> {
                             title: attribute.title,
                             placeholder: AppString.inputTextFieldHints,
                             controller: TextEditingController(
-                              text: falseProvider.getValues(attribute.title)?.first ?? '',
+                              text: falseProvider.getValues(attribute.title)?.first ?? attribute.placeholderKey,
                             ),
                             onChanged: (value) {
                               falseProvider.setValue(attribute.title, [value]);
@@ -105,7 +106,7 @@ class _FormScreenState extends State<FormScreen> {
                   label: AppString.submit,
                   onPressed: () {
                     if (falseProvider.validateForm() &&
-                        trueProvider.formValues.length == formData.jsonResponse.attributes.length) {
+                        falseProvider.formValues.length == formData.jsonResponse.attributes.length) {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -116,7 +117,7 @@ class _FormScreenState extends State<FormScreen> {
                       );
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text(AppString.dropdown)),
+                        SnackBar(content: Text(AppString.allRequiredText)),
                       );
                     }
                   },

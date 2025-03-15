@@ -24,6 +24,8 @@ class Attribute {
   final String id;
   final String title;
   final String type;
+  final String? selectedKey;
+  final String? placeholderKey;
   final List<String> options;
   final bool required;
   List<String> selected;
@@ -33,6 +35,8 @@ class Attribute {
     required this.title,
     required this.type,
     required this.options,
+    this.selectedKey,
+    this.placeholderKey,
     this.required = false,
     this.selected = const [],
   });

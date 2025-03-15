@@ -1,7 +1,6 @@
-import 'package:dynamic_form/core/commons/widgets/title_text.dart';
 import 'package:flutter/material.dart';
 
-import '../../../resources/strings.dart';
+import '../title_text.dart';
 import '../validation_text.dart';
 
 class CustomDropdown extends StatelessWidget {
